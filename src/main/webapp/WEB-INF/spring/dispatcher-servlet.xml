@@ -10,9 +10,7 @@
 	<mvc:annotation-driven/>
 	<context:component-scan base-package="com.iter.mvc.controller"/>
 
-	<bean scope="singleton" class="com.iter.dao.InfoDao">
-
-	</bean>
+	<bean scope="singleton" class="com.iter.InfoDao"/>
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>

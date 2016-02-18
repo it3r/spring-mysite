@@ -1,0 +1,16 @@
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    background-color: #5cb85c;
+}
+.container{
+    background-color: #f5e79e;
+    min-height: 800px;
+}
+.table tr th{
+    border-bottom: 1px solid #000000;
+}
+.table tr td{
+    border-bottom: 1px solid #000000;
+}
+.table td{
+    word-break: break-all;
+}

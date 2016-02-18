@@ -1,13 +1,18 @@
 package com.iter.mvc.controller;
 
-import com.iter.dao.InfoDao;
+import com.iter.InfoDao;
+import com.iter.hentities.MessagesEntity;
+import com.iter.service.MessagesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -27,8 +32,17 @@ public class HomeController {
         return "aboutSite";
     }
 
+    @Autowired
+    private MessagesService messagesService;
+
     @RequestMapping("/messages")
     public String goMessagesToMe( Model model ){
+        List<MessagesEntity> messList = messagesService.getMessages();
+        Map<String,String> messages = new HashMap<String, String>(  );
+        for ( MessagesEntity m : messList ){
+            messages.put( m.getAuthor(), m.getMessagebody() );
+        }
+        model.addAttribute( "mesMap" , messages );
         return "messages";
     }
 
@@ -46,7 +60,11 @@ public class HomeController {
     public String contactMe(
         @RequestParam("e-mail") String email,
         @RequestParam("message-body") String mBody){
+        MessagesEntity message = new MessagesEntity();
+        message.setAuthor( email );
+        message.setMessagebody( mBody );
         System.out.println( email + mBody );
+        messagesService.addMessage( message );
         return "contact";
     }
 

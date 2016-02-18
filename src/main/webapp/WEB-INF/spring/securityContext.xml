@@ -6,10 +6,10 @@
 
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
     <security:http auto-config="true" use-expressions="false">
+        <security:intercept-url pattern="/messages" access="ROLE_ADMIN"/>
         <security:form-login login-page="/login" login-processing-url="/login"
                              username-parameter="user" password-parameter="password"
                              default-target-url="/messages" authentication-failure-url="/login?error=true"/>
-        <security:intercept-url pattern="/messages" access="ROLE_ADMIN"/>
     </security:http>
     
     <security:authentication-manager>

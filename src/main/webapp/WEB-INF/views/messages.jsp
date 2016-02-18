@@ -9,7 +9,22 @@
 </jsp:include>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <p> Сообщения </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Отправитель</th>
+                    <th>Сообщение</th>
+                </tr>
+            </thead>
+            <tbody>
+                <jstl:forEach items="${mesMap}" var="mes">
+                    <tr>
+                        <td>${mes.key}</td>
+                        <td>${mes.value}</td>
+                    </tr>
+                </jstl:forEach>
+            </tbody>
+        </table>
     </div>
 </div>
 <jsp:include page="layoutbottom.jsp"/>
